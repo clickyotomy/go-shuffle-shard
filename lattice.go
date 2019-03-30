@@ -52,7 +52,7 @@ func set(arr []string) []string {
 	return s
 }
 
-// sliceIdx is a helper function to find the index of a matching string
+// indexOf is a helper function to find the index of a matching string
 // in a slice.
 func indexOf(s []string, p string) int {
 	for i, _ := range s {
