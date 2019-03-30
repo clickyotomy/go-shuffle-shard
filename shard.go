@@ -19,8 +19,9 @@ import (
 var seed = time.Now().UTC().UnixNano()
 
 // SimpleShuffleShard implementation uses simple probabilistic hashing to
-// compute shuffle shards. This function accepts an existing lattice and
-// generates a new sharded lattice with the chosen endpoints.
+// compute shuffle shards. This function takes an existing lattice and
+// generates a new sharded lattice for the given indentification and
+// required number of endpoints with the sharded endpoints.
 func (l *Lattice) SimpleShuffleShard(id []byte, epc int) (*Lattice, error) {
 	var (
 		r       *rand.Rand
