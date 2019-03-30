@@ -7,8 +7,8 @@ import (
 	"github.com/clickyotomy/go-shuffle-shard"
 )
 
-// The maxium variation allowed (maximum: 30%).
-const distributionThreshold float64 = 0.3
+// The maxium variation allowed (maximum: 40%).
+const distributionThreshold float64 = 0.4
 
 // almost is a helper function for asserting floats, within a threshold.
 func almost(a, b, t float64) bool {

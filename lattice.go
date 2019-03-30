@@ -6,6 +6,7 @@ import (
 	"strings"
 )
 
+// Lattice defines an N-dimensional lattice.
 type Lattice struct {
 	// DimensionNames is a set of dimensions
 	// that can be attributed to a lattice.
@@ -55,7 +56,7 @@ func set(arr []string) []string {
 // indexOf is a helper function to find the index of a matching string
 // in a slice.
 func indexOf(s []string, p string) int {
-	for i, _ := range s {
+	for i := range s {
 		if s[i] == p {
 			return i
 		}
@@ -147,7 +148,7 @@ func (l *Lattice) GetAllCoordinates() [][]string {
 		c [][]string
 	)
 
-	for k, _ := range l.EndpointsByCoordinate {
+	for k := range l.EndpointsByCoordinate {
 		t = append(t, k)
 	}
 	t = set(t)
@@ -205,7 +206,7 @@ func (l *Lattice) SimulateFailure(dName, dVal string) (*Lattice, error) {
 		return nil, fmt.Errorf("lattice: unknown dimension name")
 	}
 
-	for c, _ := range l.EndpointsByCoordinate {
+	for c := range l.EndpointsByCoordinate {
 		// Because we joined as a key for `Lattice.EndpointsByCoordinate'.
 		s := strings.Split(c, seperator)
 		if s[dIdx] != dVal {
