@@ -13,8 +13,9 @@ vet:
 	go vet ./...
 
 mod:
+	go mod download
 	go mod tidy
-	go get -u
+	go mod verify 
 
 dev: mod fmt vet build test
 
