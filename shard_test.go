@@ -1,6 +1,7 @@
 package shuffle_test
 
 import (
+	"fmt"
 	"math"
 	"testing"
 
@@ -42,7 +43,7 @@ func TestSimpleShuffleShard(t *testing.T) {
 	frq = map[string]int{}
 
 	for i := 97; i < 117; i++ {
-		eps = append(eps, string(i))
+		eps = append(eps, fmt.Sprintf("%d", i))
 	}
 
 	// For a single cell lattice (with 20 endpoints).
@@ -307,7 +308,7 @@ func TestSimpleShuffleShard(t *testing.T) {
 	frq = map[string]int{}
 
 	for i := 97; i < 121; i++ {
-		eps = append(eps, string(i))
+		eps = append(eps, fmt.Sprintf("%d", i))
 	}
 
 	lat, err = shuffle.NewLattice([]string{"az", "version"})
