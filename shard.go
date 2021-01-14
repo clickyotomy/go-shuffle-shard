@@ -39,11 +39,11 @@ func (l *Lattice) SimpleShuffleShard(id []byte, epc int) (*Lattice, error) {
 	)
 
 	// Create a seed a random generator.
-	shdSeed = int64(murmur3.Sum64WithSeed(id, uint32(seed)))
-	r = rand.New(rand.NewSource(seed * shdSeed * 42))
+	shdSeed = int64(murmur3.Sum64WithSeed(id, uint32(l.Seed)))
+	r = rand.New(rand.NewSource(l.Seed * shdSeed * 42))
 
 	// The "chosen" lattice, which will have the sharded endpoints.
-	shard, err = NewLattice(l.GetDimensionNames())
+	shard, err = NewLatticeWithSeed(l.Seed, l.GetDimensionNames())
 	if err != nil {
 		return nil, fmt.Errorf(
 			"shard: unable to create a sharded lattice: %v", err,

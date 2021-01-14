@@ -28,6 +28,11 @@ type Lattice struct {
 	// have something like:
 	//      ["us-x", "v42"] -> [endpoints-in-us-x-running-v42].
 	EndpointsByCoordinate map[string][]string
+
+	// Seed is the seed to use for randomness. Shuffle sharding intends to use
+	// the seed as a sort of application ID to allow applications to
+	// consistently produce the same results.
+	Seed int64
 }
 
 // We need this because we can't have a slice for a key in a map,
@@ -68,12 +73,20 @@ func indexOf(s []string, p string) int {
 // NewLattice creates an N-dimensional Lattice for a given set of dimension
 // names, where each dimension represents a meaningful availability axis.
 func NewLattice(dims []string) (*Lattice, error) {
+	return NewLatticeWithSeed(seed, dims)
+}
+
+// NewLatticeWithSeed creates an N-dimensional Lattice for a given set of
+// dimension names, where each dimension represents a meaningful availability
+// axis. Seed is intended to be used as an application ID, so the same
+// application can create consistent results across restarts.
+func NewLatticeWithSeed(seed int64, dims []string) (*Lattice, error) {
 	if len(dims) == 0 {
 		return nil, fmt.Errorf("lattice: at least one dimension is required")
 	}
 
 	// Initialize an empty lattice.
-	l := &Lattice{[]string{}, map[string][]string{}, map[string][]string{}}
+	l := &Lattice{[]string{}, map[string][]string{}, map[string][]string{}, seed}
 
 	// Sort the dimensions.
 	sort.Strings(dims)
