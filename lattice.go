@@ -4,7 +4,12 @@ import (
 	"fmt"
 	"sort"
 	"strings"
+	"time"
 )
+
+// This seed is used as the default seed when one does not care about
+// generating inconsistent shards across process boundaries.
+var seed = time.Now().UTC().UnixNano()
 
 // Lattice defines an N-dimensional lattice.
 type Lattice struct {
@@ -71,7 +76,9 @@ func indexOf(s []string, p string) int {
 }
 
 // NewLattice creates an N-dimensional Lattice for a given set of dimension
-// names, where each dimension represents a meaningful availability axis.
+// names, where each dimension represents a meaningful availability axis. It
+// uses a seed based on process start time. See NewLatticeWithSeed for seed
+// meaning and behavior.
 func NewLattice(dims []string) (*Lattice, error) {
 	return NewLatticeWithSeed(seed, dims)
 }

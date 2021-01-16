@@ -10,13 +10,9 @@ import (
 	"fmt"
 	"math"
 	"math/rand"
-	"time"
 
 	"github.com/spaolacci/murmur3"
 )
-
-// We need a seed value for the random stuff.
-var seed = time.Now().UTC().UnixNano()
 
 // SimpleShuffleShard implementation uses simple probabilistic hashing to
 // compute shuffle shards. This function takes an existing lattice and
