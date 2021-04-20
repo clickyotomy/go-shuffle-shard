@@ -27,11 +27,14 @@ func TestStatefulShuffleShardRunsOutOfShards(t *testing.T) {
 }
 
 func TestStatefulShuffleShardSingleCell(t *testing.T) {
-	endpoints := []string{"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O",
-		"P", "Q", "R", "S", "T"}
+	endpoints := []string{
+		"A", "B", "C", "D", "E", "F", "G", "H", "I", "J",
+		"K", "L", "M", "N", "O", "P", "Q", "R", "S", "T",
+	}
+
 	lattice, err := shuffle.NewLattice([]string{"dimX"})
 	if err != nil {
-		t.Fatalf("unable tocreate new lattice: %v", err)
+		t.Fatalf("unable to create new lattice: %v", err)
 	}
 	lattice.AddEndpointsForSector([]string{"x"}, endpoints)
 

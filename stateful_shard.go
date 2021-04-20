@@ -2,11 +2,12 @@ package shuffle
 
 import (
 	"fmt"
-	"github.com/getlantern/deepcopy"
-	"github.com/mxschmitt/golang-combinations"
 	"math/rand"
 	"sort"
 	"time"
+
+	"github.com/getlantern/deepcopy"
+	"github.com/mxschmitt/golang-combinations"
 )
 
 type StatefulSharder struct {
