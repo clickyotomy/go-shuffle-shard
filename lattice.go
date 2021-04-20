@@ -34,9 +34,9 @@ type Lattice struct {
 	//      ["us-x", "v42"] -> [endpoints-in-us-x-running-v42].
 	EndpointsByCoordinate map[string][]string
 
-	// Seed is the seed to use for randomness. Shuffle sharding intends to use
-	// the seed as a sort of application ID to allow applications to
-	// consistently produce the same results.
+	// Seed is the seed to use for randomness. Shuffle sharding intends
+	// to use the seed as a sort of application ID to allow applications
+	// to consistently produce the same results.
 	Seed int64
 }
 

@@ -7,7 +7,7 @@ import (
 )
 
 func TestStatefulShuffleShardRunsOutOfShards(t *testing.T) {
-	endpoints := []string{"A", "B", "C", "D", "E"};
+	endpoints := []string{"A", "B", "C", "D", "E"}
 	lattice, err := shuffle.NewLattice([]string{"dimX"})
 	if err != nil {
 		t.Fatalf("unable to create new lattice: %v", err)
@@ -18,7 +18,7 @@ func TestStatefulShuffleShardRunsOutOfShards(t *testing.T) {
 
 	for i := 0; i < 2; i++ {
 		_, err := sharder.StatefulShuffleShard(lattice, 4, 2)
-		if err != nil && i != 1{
+		if err != nil && i != 1 {
 			t.Fatalf("Should only have one valid shard from this config")
 		} else if err != nil && err.Error() != "No shards available" {
 			t.Fatalf("Unexpected error from StatefulShuffleShard failure")
@@ -64,7 +64,7 @@ func TestStatefulShuffleShardSingleCell(t *testing.T) {
 	}
 }
 
-	// 1-dimensional lattice with 20 endpoints
+// 1-dimensional lattice with 20 endpoints
 func TestStatefulShuffleShardOneDimensional(t *testing.T) {
 	endpointsA := []string{"A", "B", "C", "D", "E", "F", "G", "H", "I", "J"}
 	endpointsB := []string{"K", "L", "M", "N", "O", "P", "Q", "R", "S", "T"}
@@ -99,7 +99,7 @@ func TestStatefulShuffleShardOneDimensional(t *testing.T) {
 			t.Fatalf("GetEndpointsForSector failed for az1 when it shouldn't have")
 		}
 		for _, letter := range letters {
-			if ! contains(letter, endpointsA) {
+			if !contains(letter, endpointsA) {
 				t.Fatalf("az1 sector had an endpoint that didn't come from its list of endpoints")
 			}
 			seen[letter] = true
@@ -109,7 +109,7 @@ func TestStatefulShuffleShardOneDimensional(t *testing.T) {
 			t.Fatalf("GetEndpointsForSector failed for az2 when it shouldn't have")
 		}
 		for _, letter := range letters {
-			if ! contains(letter, endpointsB) {
+			if !contains(letter, endpointsB) {
 				t.Fatalf("az2 sector had an endpoint that didn't come from its list of endpoints")
 			}
 			seen[letter] = true
@@ -160,8 +160,8 @@ func TestStatefulShuffleShardTwoDimensional(t *testing.T) {
 		if err != nil {
 			t.Fatalf("GetEndpointsForSector failed for az1,1 when it shouldn't have")
 		}
-		for _, letter := range letters{
-			if ! contains(letter, endpointsA1) {
+		for _, letter := range letters {
+			if !contains(letter, endpointsA1) {
 				t.Fatalf("az1,1 sector had an endpoint that didn't come from its list of endpoints")
 			}
 			seen[letter] = true
@@ -170,8 +170,8 @@ func TestStatefulShuffleShardTwoDimensional(t *testing.T) {
 		if err != nil {
 			t.Fatalf("GetEndpointsForSector failed for az1,2 when it shouldn't have")
 		}
-		for _, letter := range letters{
-			if ! contains(letter, endpointsA2) {
+		for _, letter := range letters {
+			if !contains(letter, endpointsA2) {
 				t.Fatalf("az1,2 sector had an endpoint that didn't come from its list of endpoints")
 			}
 			seen[letter] = true
@@ -180,8 +180,8 @@ func TestStatefulShuffleShardTwoDimensional(t *testing.T) {
 		if err != nil {
 			t.Fatalf("GetEndpointsForSector failed for az2,1 when it shouldn't have")
 		}
-		for _, letter := range letters{
-			if ! contains(letter, endpointsB1) {
+		for _, letter := range letters {
+			if !contains(letter, endpointsB1) {
 				t.Fatalf("az2,1 sector had an endpoint that didn't come from its list of endpoints")
 			}
 			seen[letter] = true
@@ -190,8 +190,8 @@ func TestStatefulShuffleShardTwoDimensional(t *testing.T) {
 		if err != nil {
 			t.Fatalf("GetEndpointsForSector failed for az2,2 when it shouldn't have")
 		}
-		for _, letter := range letters{
-			if ! contains(letter, endpointsB2) {
+		for _, letter := range letters {
+			if !contains(letter, endpointsB2) {
 				t.Fatalf("az2,2 sector had an endpoint that didn't come from its list of endpoints")
 			}
 			seen[letter] = true
@@ -204,7 +204,7 @@ func TestStatefulShuffleShardTwoDimensional(t *testing.T) {
 
 	for _, letter := range endpoints {
 		if _, ok := seen[letter]; !ok {
-			t.Fatalf("Not all endpoints were seen after 45 stateful shuffles")
+			t.Fatalf("Not all endpoints were seen after 20 stateful shuffles")
 		}
 	}
 }
